@@ -3,24 +3,42 @@
 <body>
 
 <h2>Cálculo de Concentração de Soluções</h2>
+<br>
+Digite a concentração prescrita: <input id="CP">
+Digite o volume prescrito: <input id="VP">
+Digite a concentração existente da solução menos concentrada: <input id="C1">
+Digite a concentração existente da solução mais concentrada: <input id="C2">
 
-<p>Digite a concentração prescrita:</p>
-<input id="CP">
-
-<button type="button" onclick="myFunction()">Submit</button>
+<button type="button" onclick="conc()">Submit</button>
 
 <p id="demo"></p>
 
 <script>
-function myFunction() {
+function CalculaV1(cf, vf, c1, c2){ 
+  let v1 = ((((cf*vf)-(c2*vf))/(c1-c2)));
+  return v1;
+}
+
+function CalculaV2(cf,  vf,  c1,  c2){
+  let v1 = CalculaV1(cf, vf, c1, c2);
+  let v2 = vf-v1;
+  return v2;
+}  
+  
+function conc() {
   // Get the value of the input field with id="numb"
   let CP = document.getElementById("CP").value;
+  let VP = document.getElementById("VP").value;
+  let C1 = document.getElementById("C1").value;
+  let C2 = document.getElementById("C2").value;
   let text;
   
-  if (isNaN(CP)) {
-    text = "Entrada invalida";
+  if (isNaN(CP) || isNaN(VP) || isNaN(C1) || isNaN(C2)  ) {
+    text = "Entrada inválida, todos devem ser números";
   } else {
-    text = "Input OK";
+     let V1 = CalculaV1(CP, VP, C1, C2);
+     let V2 = CalculaV2(CP, VP, C1, C2);
+    text = "Resultado:"+V2;
   }
   document.getElementById("demo").innerHTML = text;
 }
