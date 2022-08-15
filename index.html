@@ -1,58 +1,79 @@
 <!DOCTYPE html>
 <html>
+<head>
+<style>
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button1 {background-color: #4CAF50;} /* Green */
+.button2 {background-color: #008CBA;} /* Blue */
+</style>
+</head>
 <body>
+  <center>
+    <h2>Cálculo de Concentração de Soluções</h2>
+  </center>
+  <br>
+  <p>
+    Digite a concentração prescrita: <input id="CP"><br>
+    Digite o volume prescrito: <input id="VP"><br>
+    Digite a concentração existente da solução menos concentrada: <input id="C1"><br>
+    Digite a concentração existente da solução mais concentrada: <input id="C2"><br>
+    Digite o volume por âmpola: <input id="volume"><br>
+  <p>
+    <center>
+       <button class="button button2" type="button" onclick="conc()">Calcula Concentração</button>
+   </center>
+  <p id="linha1"></p>
+  <p id="linha2"></p>
+  <p id="linha3"></p>
 
-<h2>Cálculo de Concentração de Soluções</h2>
-<br>
-<p>
-Digite a concentração prescrita: <input id="CP"><br>
-Digite o volume prescrito: <input id="VP"><br>
-Digite a concentração existente da solução menos concentrada: <input id="C1"><br>
-Digite a concentração existente da solução mais concentrada: <input id="C2"><br>
-Digite o volume por âmpola: <input id="volume"><br>
-  
-<button type="button" onclick="conc()">Calcula Concentração</button>
+  <script>
+    function CalculaV1(cf, vf, c1, c2) {
+      let v1 = ((((cf * vf) - (c2 * vf)) / (c1 - c2)));
+      return v1;
+    }
 
-<p id="linha1"></p>
-<p id="linha2"></p>
-<p id="linha3"></p>
+    function CalculaV2(cf, vf, c1, c2) {
+      let v1 = CalculaV1(cf, vf, c1, c2);
+      let v2 = vf - v1;
+      return v2;
+    }
 
-<script>
-function CalculaV1(cf, vf, c1, c2){ 
-  let v1 = ((((cf*vf)-(c2*vf))/(c1-c2)));
-  return v1;
-}
+    function conc() {
+      // Get the value of the input field with id="numb"
+      let CP = document.getElementById("CP").value;
+      let VP = document.getElementById("VP").value;
+      let C1 = document.getElementById("C1").value;
+      let C2 = document.getElementById("C2").value;
+      let VOL = document.getElementById("volume").value;
+      let text;
 
-function CalculaV2(cf,  vf,  c1,  c2){
-  let v1 = CalculaV1(cf, vf, c1, c2);
-  let v2 = vf-v1;
-  return v2;
-}  
-  
-function conc() {
-  // Get the value of the input field with id="numb"
-  let CP = document.getElementById("CP").value;
-  let VP = document.getElementById("VP").value;
-  let C1 = document.getElementById("C1").value;
-  let C2 = document.getElementById("C2").value;
-  let VOL = document.getElementById("volume").value;
-  let text;
-  
-  if (isNaN(CP) || isNaN(VP) || isNaN(C1) || isNaN(C2) ||  isNaN(VOL)  ) {
-    text = "Entrada inválida, todos devem ser números";
-  } else {
-     let V1 = CalculaV1(CP, VP, C1, C2);
-     let V2 = CalculaV2(CP, VP, C1, C2);
-     let quantidade = V2/VOL;
-     var text1 = "Volume 1:<b> "+V1.toFixed(2)+"</b>";
-     var text2 =" Volume 2:<b> "+V2.toFixed(2)+"</b>";
-     var text3 = "A quantidade necessária de ampolas é: <b>"+ quantidade.toFixed(2)+"</b>";
-  }
-  document.getElementById("linha1").innerHTML = text1;
-  document.getElementById("linha2").innerHTML = text2;
-  document.getElementById("linha3").innerHTML = text3;
-}
-</script>
+      if (isNaN(CP) || isNaN(VP) || isNaN(C1) || isNaN(C2) || isNaN(VOL)) {
+        text = "Entrada inválida, todos devem ser números";
+      } else {
+        let V1 = CalculaV1(CP, VP, C1, C2);
+        let V2 = CalculaV2(CP, VP, C1, C2);
+        let quantidade = V2 / VOL;
+        var text1 = "Volume 1:<b> " + V1.toFixed(2) + "</b>";
+        var text2 = " Volume 2:<b> " + V2.toFixed(2) + "</b>";
+        var text3 = "A quantidade necessária de ampolas é: <b>" + quantidade.toFixed(2) + "</b>";
+      }
+      document.getElementById("linha1").innerHTML = text1;
+      document.getElementById("linha2").innerHTML = text2;
+      document.getElementById("linha3").innerHTML = text3;
+    }
+  </script>
 
 </body>
-</html> 
+
+</html>
