@@ -4,10 +4,11 @@
 
 <h2>Cálculo de Concentração de Soluções</h2>
 <br>
-Digite a concentração prescrita: <input id="CP">
-Digite o volume prescrito: <input id="VP">
-Digite a concentração existente da solução menos concentrada: <input id="C1">
-Digite a concentração existente da solução mais concentrada: <input id="C2">
+<p>
+Digite a concentração prescrita: <input id="CP"><br>
+Digite o volume prescrito: <input id="VP"><br>
+Digite a concentração existente da solução menos concentrada: <input id="C1"><br>
+Digite a concentração existente da solução mais concentrada: <input id="C2"><br>
 
 <button type="button" onclick="conc()">Submit</button>
 
@@ -38,6 +39,7 @@ function conc() {
   } else {
      let V1 = CalculaV1(CP, VP, C1, C2);
      let V2 = CalculaV2(CP, VP, C1, C2);
+    alert(V2)
     text = "Resultado:"+V2;
   }
   document.getElementById("demo").innerHTML = text;
