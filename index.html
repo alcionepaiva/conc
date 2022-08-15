@@ -44,9 +44,9 @@ function conc() {
      let V1 = CalculaV1(CP, VP, C1, C2);
      let V2 = CalculaV2(CP, VP, C1, C2);
      let quantidade = V2/VOL;
-     var text1 = "Volume 1:<b> "+V1.toFixed(3)+"</b>";
-     var text2 =" Volume 2:<b> "+V2.toFixed(3)+"</b>";
-     var text3 = "A quantidade necessária de ampolas é: <b>"+ quantidade.toFixed(3)+"</b>";
+     var text1 = "Volume 1:<b> "+V1.toLocaleString('pt-BR').toFixed(2)+"</b>";
+     var text2 =" Volume 2:<b> "+V2.toFixed(2)+"</b>";
+     var text3 = "A quantidade necessária de ampolas é: <b>"+ quantidade.toFixed(2)+"</b>";
   }
   document.getElementById("linha1").innerHTML = text1;
   document.getElementById("linha2").innerHTML = text2;
