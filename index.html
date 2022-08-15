@@ -34,11 +34,11 @@
   </center>
   <br>
   <p>
-    Digite a concentração prescrita: <input id="CP"><br>
-    Digite o volume prescrito: <input id="VP"><br>
-    Digite a concentração existente da solução menos concentrada: <input id="C1"><br>
-    Digite a concentração existente da solução mais concentrada: <input id="C2"><br>
-    Digite o volume por âmpola: <input id="volume"><br>
+    Digite a concentração prescrita: <input id="CP" type="number"  maxlength="10"><br>
+    Digite o volume prescrito: <input id="VP" type="number" maxlength="10"><br>
+    Digite a concentração existente da solução menos concentrada: <input id="C1" type="number" maxlength="10"><br>
+    Digite a concentração existente da solução mais concentrada: <input id="C2" type="number" maxlength="10"><br>
+    Digite o volume por âmpola: <input id="volume" type="number" maxlength="10"><br>
   <p>
     <center>
        <button class="button button2" type="button" onclick="conc()">Calcula Concentração</button>
@@ -68,16 +68,13 @@
       let VOL = document.getElementById("volume").value;
       let text;
 
-      if (isNaN(CP) || isNaN(VP) || isNaN(C1) || isNaN(C2) || isNaN(VOL)) {
-        text = "Entrada inválida, todos devem ser números";
-      } else {
-        let V1 = CalculaV1(CP, VP, C1, C2);
-        let V2 = CalculaV2(CP, VP, C1, C2);
-        let quantidade = V2 / VOL;
-        var text1 = "Volume 1:<b> " + V1.toFixed(2) + "</b>";
-        var text2 = " Volume 2:<b> " + V2.toFixed(2) + "</b>";
-        var text3 = "A quantidade necessária de ampolas é: <b>" + quantidade.toFixed(2) + "</b>";
-      }
+      let V1 = CalculaV1(CP, VP, C1, C2);
+      let V2 = CalculaV2(CP, VP, C1, C2);
+      let quantidade = V2 / VOL;
+      var text1 = "Volume 1:<b> " + V1.toFixed(2) + "</b>";
+      var text2 = " Volume 2:<b> " + V2.toFixed(2) + "</b>";
+      var text3 = "A quantidade necessária de ampolas é: <b>" + quantidade.toFixed(2) + "</b>";
+      
       document.getElementById("linha1").innerHTML = text1;
       document.getElementById("linha2").innerHTML = text2;
       document.getElementById("linha3").innerHTML = text3;
