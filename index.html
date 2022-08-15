@@ -9,10 +9,12 @@ Digite a concentração prescrita: <input id="CP"><br>
 Digite o volume prescrito: <input id="VP"><br>
 Digite a concentração existente da solução menos concentrada: <input id="C1"><br>
 Digite a concentração existente da solução mais concentrada: <input id="C2"><br>
-
+Digite o volume por âmpola: <input id="volume"><br>
+  
 <button type="button" onclick="conc()">Submit</button>
 
-<p id="demo"></p>
+<p id="linha1"></p>
+<p id="linha2"></p>
 
 <script>
 function CalculaV1(cf, vf, c1, c2){ 
@@ -32,17 +34,20 @@ function conc() {
   let VP = document.getElementById("VP").value;
   let C1 = document.getElementById("C1").value;
   let C2 = document.getElementById("C2").value;
+  let VOL = document.getElementById("volume").value;
   let text;
   
-  if (isNaN(CP) || isNaN(VP) || isNaN(C1) || isNaN(C2)  ) {
+  if (isNaN(CP) || isNaN(VP) || isNaN(C1) || isNaN(C2) ||  isNaN(VOL)  ) {
     text = "Entrada inválida, todos devem ser números";
   } else {
      let V1 = CalculaV1(CP, VP, C1, C2);
      let V2 = CalculaV2(CP, VP, C1, C2);
-    alert(V2)
-    text = "Resultado:"+V2;
+     let quantidade = V2/volume;
+     var text1 = "Volume 1:"+V1+"  Volume 2:"+V2 ;
+     var text2 = "A quantidade necessária de ampolas é: "+ quantidade;
   }
-  document.getElementById("demo").innerHTML = text;
+  document.getElementById("linha1").innerHTML = text1;
+  document.getElementById("linha2").innerHTML = text2;
 }
 </script>
 
